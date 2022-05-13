@@ -32,3 +32,14 @@ class IndianAirports(BaseModel):
 
     db.session.add(airport_detail)
     db.session.commit()
+  
+  @classmethod
+  def update_geometries(cls):
+    """Using each airports longitude and latitude, add geometry data to db."""
+    
+    airports = IndianAirports.query.all()
+    for airport in airports:
+      point = 'POINT({} {})'.format(airport.longitude, airport.latitude)
+      airport.geo = point
+    
+    db.session.commit()
