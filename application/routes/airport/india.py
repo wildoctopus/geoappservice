@@ -24,6 +24,7 @@ def get_nearest_airport(long, lat):
 def add_airport():
     form = AddForm()
     if form.validate_on_submit():
+        IndianAirportsModelObj = IndianAirports.add_airport(form.name.data, form.longitude.data, form.latitude.data)
         flash('Added data for Airport {}'.format(form.name.data))
         return redirect(url_for('index'))
     return render_template('addairport.html', title='Add Airport', form=form)

@@ -1,3 +1,4 @@
+from unicodedata import name
 from application.models.base_model import BaseModel
 from application import db
 from sqlalchemy import func
@@ -24,11 +25,11 @@ class IndianAirports(BaseModel):
     return IndianAirports.query.filter(func.ST_Distance_Sphere(IndianAirports.geo, self.geo) < radius).all()
 
   @classmethod
-  def add_airport(cls, location, longitude, latitude):
+  def add_airport(cls, name, longitude, latitude):
     """Add a new airport detail in the database."""
     
     geo = 'POINT({} {})'.format(longitude, latitude)
-    airport_detail = IndianAirports(location=location, longitude=longitude, latitude=latitude, geo=geo)
+    airport_detail = IndianAirports(name=name, longitude=longitude, latitude=latitude, geo=geo)
 
     db.session.add(airport_detail)
     db.session.commit()
