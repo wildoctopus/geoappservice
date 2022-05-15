@@ -8,4 +8,5 @@ print(EnvironConfig.APP_ENVIRONMENT)
 class Config:
     SQLALCHEMY_DATABASE_URI = DbDevelopmentConfig.USER_DB_CONNECTION_STRING
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = EnvironConfig.FLASK_APP_SECRET
     

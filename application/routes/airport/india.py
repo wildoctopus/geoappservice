@@ -20,6 +20,22 @@ def get_nearest_airport(long, lat):
     '''
     pass
 
+@india_bp.route('/index')
+def list_all_airports():
+    dummy_airports_data = [
+        {
+            'name': 'Mumbai Airport',
+            'longitude': 109.45,
+            'latitude': 68.56
+        },
+        {
+            'name': 'Delhi Airport',
+            'longitude': 43.45,
+            'latitude': 54.56
+        }
+    ]
+    return render_template('index.html', title='Airport Details', airports = dummy_airports_data)
+
 @india_bp.route('/addairport', methods=['GET', 'POST'])
 def add_airport():
     form = AddForm()
