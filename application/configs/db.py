@@ -17,7 +17,7 @@ class DbQAConfig:
 class DbDevelopmentConfig:
 
     # edit DB_URI based on your connection string    
-    DB_URI="postgresql://postgres:XYZ@127.0.0.1:5432/test_db"
+    DB_URI="postgresql://postgres:Qwer12345@localhost:5432/mydatabase"
     
 
     USER_DB_CONNECTION_STRING = os.environ.get(
