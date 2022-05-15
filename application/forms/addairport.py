@@ -1,7 +1,7 @@
 """Form object declaration."""
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextField, SubmitField, FloatField
-from wtforms.validators import DataRequired, Length
+from wtforms import StringField, SubmitField, FloatField
+from wtforms.validators import DataRequired
 
 
 class AddForm(FlaskForm):
