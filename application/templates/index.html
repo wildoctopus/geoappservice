@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>List of Airports:</h1>
+    <table>
+        <tr><td>Name</td><td>Latitude</td><td>Longitude</td></tr>
+        {% for airport in airports %}
+        <tr><td>{{ airport.name }}</td><td>{{ airport.latitude }}</td><td>{{ airport.longitude }}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}
