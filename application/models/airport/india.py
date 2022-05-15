@@ -43,3 +43,6 @@ class IndianAirports(BaseModel):
       airport.geo = point
     
     db.session.commit()
+
+
+
