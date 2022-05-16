@@ -14,7 +14,7 @@ india_bp = Blueprint("india_route", __name__, url_prefix="/india" )
 
 @india_bp.route("/nearestap",methods=["GET"])
 #@required_params(["loc"])
-def get_nearest_airport(long, lat):
+def get_nearest(long, lat):
 
     '''
     Logic goes here to fetch nearest airport based on latitude and longitude

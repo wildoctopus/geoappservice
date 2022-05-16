@@ -56,7 +56,7 @@ class IndianAirports(BaseModel):
         lat (float): Latitude
     """
 
-    nearest_loc = cls.query.order_by(Comparator.distance_centroid(cls.c.geo, 
+    nearest_loc = cls.query.order_by(Comparator.distance_centroid(cls.geo, 
                   func.Geometry(func.ST_GeographyFromText('POINT({} {})'.format(lon, lat))))).limit(1).first()
     
     return nearest_loc
