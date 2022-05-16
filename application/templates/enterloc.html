@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Add Location:</h1>
+    <form action="{{url_for('india_route.get_location')}}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.longitude.label }}<br>
+            {{ form.longitude }}
+        </p>
+        <p>
+            {{ form.latitude.label }}<br>
+            {{ form.latitude }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

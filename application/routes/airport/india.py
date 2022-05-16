@@ -6,6 +6,7 @@ from application.models.airport.india import IndianAirports
 from application.utilities.flask import APIError, APIResponse, validate
 from application.utilities.serialization import serialize
 from application.forms.addairport import AddForm
+from application.forms.mylocation import AddLocationForm
 from http import HTTPStatus
 
 india_bp = Blueprint("india_route", __name__, url_prefix="/india" )
@@ -36,6 +37,7 @@ def list_all_airports():
     ]
     return render_template('index.html', title='Airport Details', airports = dummy_airports_data)
 
+
 @india_bp.route('/addairport', methods=['GET', 'POST'])
 def add_airport():
     form = AddForm()
@@ -44,3 +46,30 @@ def add_airport():
         flash('Added data for Airport {}'.format(form.name.data))
         return redirect(url_for('index'))
     return render_template('addairport.html', title='Add Airport', form=form)
+
+
+@india_bp.route('/nearestairport', methods=['GET', 'POST'])
+def get_nearest_airport():
+    form = AddLocationForm()
+    if form.validate_on_submit():
+        
+        return redirect(url_for('india_route.get_location'))
+    return render_template('enterloc.html', title='Enter Loc', form=form)
+
+
+@india_bp.route('/enterloc', methods=['GET', 'POST'])
+def get_location():
+
+    airport = IndianAirports.get_nearest_loc(request.form.longitude, request.form.latitude)
+    
+    return render_template('nearestairport.html', title='Nearest Airport', airport=airport)
+
+
+@india_bp.route('/result')
+def get_loc():
+
+    long = 12.45
+    lat = 23.22
+
+    airport = IndianAirports.get_nearest_loc(long, lat)    
+    return render_template('nearestairport.html', title='Nearest Airport', airport=airport)

@@ -10,8 +10,9 @@
     <body>
         <div>
             GeoAppService: 
-            <a href="{{ url_for('index') }}">Airports</a>
-            <a href="{{ url_for('addairport') }}">Add</a>
+            <a href="{{ url_for('india_route.list_all_airports') }}">Airports</a>
+            <a href="{{ url_for('india_route.add_airport') }}">Add</a>
+            <a href="{{ url_for('india_route.get_nearest_airport') }}">Find Nearest Airport</a>
         </div>
         
         <hr>

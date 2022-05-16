@@ -2,8 +2,8 @@
 
 {% block content %}
     <h1>List of Airports:</h1>
-    <table>
-        <tr><td>Name</td><td>Latitude</td><td>Longitude</td></tr>
+    <table border = 1>
+        <tr><th>Name</th><th>Latitude</th><th>Longitude</th></tr>
         {% for airport in airports %}
         <tr><td>{{ airport.name }}</td><td>{{ airport.latitude }}</td><td>{{ airport.longitude }}</td></tr>
         {% endfor %}
