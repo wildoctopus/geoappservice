@@ -23,6 +23,7 @@ def get_nearest(long, lat):
 
 @india_bp.route('/index')
 def list_all_airports():
+    '''
     dummy_airports_data = [
         {
             'name': 'Mumbai Airport',
@@ -35,7 +36,10 @@ def list_all_airports():
             'latitude': 54.56
         }
     ]
-    return render_template('index.html', title='Airport Details', airports = dummy_airports_data)
+    '''
+
+    IndianAirportsObj = IndianAirports.get_all()
+    return render_template('index.html', title='Airport Details', airports = IndianAirportsObj)
 
 
 @india_bp.route('/addairport', methods=['GET', 'POST'])
