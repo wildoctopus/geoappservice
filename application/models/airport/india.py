@@ -10,7 +10,7 @@ class IndianAirports(BaseModel):
 
   __tablename__="indian_airports"
 
-  name  = db.Column(db.String(255))
+  name  = db.Column(db.String(100))
   longitude = db.Column(db.Float)
   latitude = db.Column(db.Float)
   geo = db.Column(Geometry(geometry_type="POINT"))

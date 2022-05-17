@@ -2,6 +2,9 @@
 __pycache__/
 *.pyc
 
+#Env files
+.venv
+
 # C extensions
 *.so
 
