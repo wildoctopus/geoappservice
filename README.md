@@ -28,4 +28,4 @@ Edit below line in db.py file:
 
 ## Run project
 Run below command :
-        flask run
+            flask run
