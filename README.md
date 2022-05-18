@@ -6,10 +6,10 @@ A boilerplate code towards modular approach to Python-FLask-PostGIS project. Thi
 * Clone the repo - git clone https://github.com/wildoctopus/geoappservice.git
 * Navigate to cloned directory and create virtual env. eg - python -m venv .myenv
 * Activate the virtual env -<br> 
-      If using Unix/Mac OS - ```source .myenv/bin/activate<br>```
+      If using Unix/Mac OS - ```source .myenv/bin/activate<br>```<br/>
       If using windows run - ```.myenv\Scripts\activate.bat```
       
-* Install required packages using requirements.txt - pip install -r requirements.txt
+* Install required packages using requirements.txt - ```pip install -r requirements.txt```
 
 ## Falsk DB Migrate
 Run below flask commands to migrate db model to physical databse:
