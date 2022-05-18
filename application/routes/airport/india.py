@@ -46,9 +46,14 @@ def list_all_airports():
 def add_airport():
     form = AddForm()
     if form.validate_on_submit():
-        IndianAirportsModelObj = IndianAirports.add_airport(form.name.data, form.longitude.data, form.latitude.data)
-        flash('Added data for Airport {}'.format(form.name.data))
-        return redirect(url_for('india_route.list_all_airports'))
+
+        #Check if coordinates already exists in databse
+        locationExists = IndianAirports.get_location(form.longitude.data, form.latitude.data)
+        if not locationExists:
+            IndianAirportsModelObj = IndianAirports.add_airport(form.name.data, form.longitude.data, form.latitude.data)
+            flash('Added data for Airport {}'.format(form.name.data))
+            return redirect(url_for('india_route.list_all_airports'))
+        flash('Details already exists in Database!')
     return render_template('addairport.html', title='Add Airport', form=form)
 
 
@@ -56,9 +61,10 @@ def add_airport():
 def get_nearest_airport():
     form = AddLocationForm()
     if form.validate_on_submit():
-        
-        return redirect(url_for('india_route.get_location'))
-    return render_template('enterloc.html', title='Enter Loc', form=form)
+        airport = IndianAirports.get_nearest_loc(form.longitude.data, form.latitude.data)
+        flash('Nearest Airport {} , Long: {}, Lat: {}'.format(airport.name, airport.longitude, airport.latitude))        
+        return redirect(url_for('india_route.get_nearest_airport'))
+    return render_template('enterloc.html', title='Nearest Airport', form=form)
 
 
 @india_bp.route('/enterloc', methods=['GET', 'POST'])

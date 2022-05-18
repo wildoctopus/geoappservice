@@ -13,7 +13,7 @@ class IndianAirports(BaseModel):
   name  = db.Column(db.String(100))
   longitude = db.Column(db.Float)
   latitude = db.Column(db.Float)
-  geo = db.Column(Geometry(geometry_type="POINT"))
+  geo = db.Column(Geometry(geometry_type="POINT", srid=4326))
 
   def __repr__(self):
     return "<Airport {name} ({lat}, {lon})>".format(name=self.name, lat=self.latitude, lon=self.longitude)
@@ -66,6 +66,15 @@ class IndianAirports(BaseModel):
     """Get all airport details"""
     
     return cls.query.all()
+  
+
+  @classmethod
+  def get_location(cls, lon, lat):
+    "Returns row if matches with columns longitude and latitude"
+    row = cls.query.filter_by(longitude = lon, latitude=lat).first()
+    if row:
+      return True
+    return False
     
 
 
