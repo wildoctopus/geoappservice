@@ -3,6 +3,7 @@ A boilerplate code towards modular approach to Python-FLask-PostGIS project. Thi
 
 
 ## Project/Environment setup
+* Project is working on PostgreSQL14, Python3.10, PgAdmin4
 * Clone the repo - git clone https://github.com/wildoctopus/geoappservice.git
 * Navigate to cloned directory and create virtual env. eg - python -m venv .myenv
 * Activate the virtual env -<br> 

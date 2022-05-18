@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>List of Airports:</h1>
-    <table border = 1>
-        <tr><th>Name</th><th>Latitude</th><th>Longitude</th></tr>
-        {% for airport in airports %}
-        <tr><td>{{ airport.name }}</td><td>{{ airport.latitude }}</td><td>{{ airport.longitude }}</td></tr>
-        {% endfor %}
-    </table>
+    <h1>Welcome to GeoserviceApp Demo</h1>
+    <p>Please use above navigation links to access services.</p>
 {% endblock %}

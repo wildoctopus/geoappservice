@@ -43,6 +43,7 @@ def create_app(test_config=None):
         #register blueprints        
 
         app.register_blueprint(india.india_bp)
+        app.register_blueprint(india.entry_bp)
         
         
         return app
