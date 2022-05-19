@@ -1,5 +1,5 @@
 # geoappservice
-A boilerplate code towards modular approach to Python-FLask-PostGIS project. This project structure can be implemented to handle huge number of files.
+A boilerplate code towards modular approach to Python-FLask-PostGIS project. This project structure can be implemented to handle files at large scale. Its a simple CRUD project using Flask, PostGIS, SQLAlchemy, Geoalchemy2 and Radis/MQ with production level code.  
 
 
 ## Project/Environment setup
