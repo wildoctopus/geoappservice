@@ -8,6 +8,7 @@ from application.utilities.serialization import serialize
 from application.forms.addairport import AddForm
 from application.forms.mylocation import AddLocationForm
 from http import HTTPStatus
+from application import db
 
 india_bp = Blueprint("india_route", __name__, url_prefix="/india" )
 
@@ -82,7 +83,8 @@ def get_location():
     
     return render_template('nearestairport.html', title='Nearest Airport', airport=airport)
 
-
+'''
+#Dummy route to test nearest location.
 @india_bp.route('/result')
 def get_loc():
 
@@ -91,3 +93,38 @@ def get_loc():
 
     airport = IndianAirports.get_nearest_loc(long, lat)    
     return render_template('nearestairport.html', title='Nearest Airport', airport=airport)
+'''
+
+
+@india_bp.route('/delete/<int:id>', methods=['GET','POST'])
+def delete(id):
+    IndianAirportsObj = IndianAirports.get_by_id(id = id)
+    print("hello")
+    #if request.method == 'POST':
+    if IndianAirportsObj:
+        print("hello")
+        db.session.delete(IndianAirportsObj)
+        db.session.commit()
+        return redirect(url_for('india_route.list_all_airports'))
+    flash('Detail not found.')
+    return redirect(url_for('india_route.list_all_airports'))
+ 
+    #return redirect(url_for('india_route.list_all_airports'))
+
+@india_bp.route('/deleteall', methods=['GET','POST'])
+def delete_all():
+    
+    try:
+        num_rows_deleted = IndianAirports.query.delete()
+        db.session.commit()        
+
+    except:
+        db.session.rollback()
+        
+    if num_rows_deleted:
+        return redirect(url_for('india_route.list_all_airports'))   
+    flash('Details not found.')
+ 
+    return redirect(url_for('india_route.list_all_airports'))
+    
+

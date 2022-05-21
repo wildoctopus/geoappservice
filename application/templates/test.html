@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <div class="form-wrapper">
+    <h2 class="title">Add airport details</h2>
+
+    <form method="POST" action="">
+
+      <fieldset class="form-field">
+      {{ form.name.label }}
+      {{ form.name }}
+        {% if form.name.errors %}
+        <ul class="errors">
+          {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </fieldset>
+
+      <fieldset class="form-field">
+        {{ form.longitude.label }}
+        {{ form.longitude }}
+        {% if form.longitude.errors %}
+          <ul class="errors">
+            {% for error in form.longitude.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+
+      <fieldset class="form-field">
+        {{ form.latitude.label }}
+        {{ form.latitude }}
+        {% if form.latitude.errors %}
+          <ul class="errors">
+            {% for error in form.latitude.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </fieldset>
+
+      {{ form.submit }}
+
+      </form>
+  </div>
+
+{% endblock %}

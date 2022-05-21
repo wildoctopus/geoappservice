@@ -3,9 +3,13 @@
 {% block content %}
     <h1>List of Airports:</h1>
     <table border = 1>
-        <tr><th>Name</th><th>Longitude</th><th>Latitude</th></tr>
-        {% for airport in airports %}
-        <tr><td>{{ airport.name }}</td><td>{{ airport.longitude }}</td><td>{{ airport.latitude }}</td></tr>
-        {% endfor %}
+        {% if airports %}
+            <tr><th>Name</th><th>Longitude</th><th>Latitude</th><th><a href="{{url_for('india_route.delete_all')}}">Delete All</a></th></tr>
+            {% for airport in airports %}
+            <tr><td>{{ airport.name }}</td><td>{{ airport.longitude }}</td><td>{{ airport.latitude }}</td><td><a href="{{url_for('india_route.delete', id = airport.id)}}" method = "POST">delete</a></td></tr>
+            {% endfor %}
+        {% else %}
+            <p>No records in Databse</p>
+        {% endif %}
     </table>
 {% endblock %}

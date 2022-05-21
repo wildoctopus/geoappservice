@@ -75,6 +75,10 @@ class IndianAirports(BaseModel):
     if row:
       return True
     return False
+  
+  @classmethod
+  def get_by_id(cls, id):
+    return cls.query.filter_by(id=id).first()
     
 
 
