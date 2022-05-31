@@ -1,14 +1,24 @@
 from flask import Blueprint, request
 from flask import Response
 from flask import render_template, flash, redirect, url_for
+from application.configs import Config
 from application.utilities.validation import required_params,validate_json,allowed_file_type_and_size
 from application.models.airport.india import IndianAirports
 from application.utilities.flask import APIError, APIResponse, validate
 from application.utilities.serialization import serialize
 from application.forms.addairport import AddForm
 from application.forms.mylocation import AddLocationForm
+from application.forms.upload import UploadForm
+from werkzeug.utils import secure_filename
 from http import HTTPStatus
 from application import db
+from application.configs.constants import Constant
+import os
+import csv
+import io
+from flask import current_app
+
+
 
 india_bp = Blueprint("india_route", __name__, url_prefix="/india" )
 
@@ -18,7 +28,6 @@ entry_bp = Blueprint("entry_route", __name__, url_prefix="" )
 @entry_bp.route("/")
 def welcome():
     return render_template('index.html', title='Welcome')
-
 
 
 @india_bp.route("/nearestap",methods=["GET"])
@@ -111,6 +120,7 @@ def delete(id):
  
     #return redirect(url_for('india_route.list_all_airports'))
 
+
 @india_bp.route('/deleteall', methods=['GET','POST'])
 def delete_all():
     
@@ -128,3 +138,50 @@ def delete_all():
     return redirect(url_for('india_route.list_all_airports'))
     
 
+@india_bp.route('/upload', methods=['GET','POST'])
+def upload():
+    form = UploadForm()
+    if form.validate_on_submit():
+        uploaded_file = form.file.data
+        filename = secure_filename(form.file.data.filename)
+        path = current_app.config.get("UPLOAD_PATH")
+
+        
+        if not os.path.exists(path):
+            os.makedirs(path)
+            
+        print(path)
+        file_path = os.path.join(path, filename)
+        uploaded_file.save(file_path)
+        #filestream.seek(0)
+        print(filename)
+        processCSV(filename=file_path)
+
+        flash('File uploaded')        
+        return redirect(url_for('india_route.list_all_airports'))
+ 
+    return render_template('upload.html', title='File Upload', form=form)
+
+
+def processCSV(filename):
+    with open(filename, 'r') as csv_file:
+        reader = csv.reader(csv_file)
+        #print(str(reader))
+
+        buffer = []
+        for row in reader:
+            buffer.append({
+                'name': row[0],
+                'longitude': float(row[1]),
+                'latitude': float(row[2]),
+                'geo': 'POINT({} {})'.format(float(row[1]), float(row[2]))
+            })
+            if len(buffer) % 10000 == 0:
+                db.session.bulk_insert_mappings(buffer)
+                buffer = []
+        print(buffer)
+
+        db.session.bulk_insert_mappings(IndianAirports, buffer)
+        db.session.commit()
+    
+    
