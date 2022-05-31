@@ -23,3 +23,8 @@ sdist/
 .coverage
 .cache
 
+#config folders as per user
+config/db.py
+application/upload
+migrations
+
