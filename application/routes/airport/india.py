@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask import Response
 from flask import render_template, flash, redirect, url_for
+from application.configs import Config
 from application.utilities.validation import required_params,validate_json,allowed_file_type_and_size
 from application.models.airport.india import IndianAirports
 from application.utilities.flask import APIError, APIResponse, validate
@@ -15,6 +16,9 @@ from application.configs.constants import Constant
 import os
 import csv
 import io
+from flask import current_app
+
+
 
 india_bp = Blueprint("india_route", __name__, url_prefix="/india" )
 
@@ -24,7 +28,6 @@ entry_bp = Blueprint("entry_route", __name__, url_prefix="" )
 @entry_bp.route("/")
 def welcome():
     return render_template('index.html', title='Welcome')
-
 
 
 @india_bp.route("/nearestap",methods=["GET"])
@@ -141,7 +144,14 @@ def upload():
     if form.validate_on_submit():
         uploaded_file = form.file.data
         filename = secure_filename(form.file.data.filename)
-        file_path = os.path.join(Constant.UPLOAD_FOLDER, filename)
+        path = current_app.config.get("UPLOAD_PATH")
+
+        
+        if not os.path.exists(path):
+            os.makedirs(path)
+            
+        print(path)
+        file_path = os.path.join(path, filename)
         uploaded_file.save(file_path)
         #filestream.seek(0)
         print(filename)
