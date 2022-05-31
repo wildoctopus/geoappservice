@@ -31,3 +31,7 @@ Edit below line in db.py file:
 Run below command :
 
         flask run
+
+
+## How to Contribute
+In order to contribute to this project please fork this repo and choose any open issue you want to work on.
