@@ -18,6 +18,8 @@ Run below flask commands to migrate db model to physical databse:
 * flask db migrate -m "Some message"
 * flask db upgrade
 
+Note: As migration folder is added, directly execute ```flask db upgrade```
+
 ## DB Config
 Before running the project, make sure to change the Db URI variables based on your local databse connection strings. 
 DB config files can be found at : application/configs/db.py
@@ -33,5 +35,5 @@ Run below command :
         flask run
 
 
-## How to Contribute
-In order to contribute to this project please fork this repo and choose any open issue you want to work on.
+## How to Contribute?
+In order to contribute to this project please fork this repo and choose the open issue you want to work on. Feel free to suggest enhancements and post issues if you encounter any. Thanks. 
