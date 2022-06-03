@@ -1,6 +1,6 @@
-from application.configs.db import DbDevelopmentConfig
-from application.configs.environ import EnvironConfig
-from application.configs.constants import Constant
+from app.configs.db import DbDevelopmentConfig
+from app.configs.environ import EnvironConfig
+from app.configs.constants import Constant
 
 print(DbDevelopmentConfig.USER_DB_CONNECTION_STRING,)
 print(EnvironConfig.APP_ENVIRONMENT)

@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from flask import request
 from cerberus import  Validator
-from application.utilities.flask import APIError
+from app.utilities.flask import APIError
 import os
 
 def required_params(params):

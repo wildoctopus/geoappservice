@@ -4,7 +4,7 @@ from uuid import UUID
 
 from flask_sqlalchemy import SQLAlchemy
 
-from application import db
+from app import db
 
 primitive = (int, float, str, bool)
 

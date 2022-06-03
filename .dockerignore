@@ -1,0 +1,14 @@
+passphrase.txt
+logs/
+.git
+*.md
+.cache
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+
+#Env files
+.venv
+
+# C extensions
+*.so

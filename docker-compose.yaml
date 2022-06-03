@@ -1,0 +1,35 @@
+version: '3.9'
+volumes:
+  postgis-data:
+
+services:
+  api:
+    build: .
+    depends_on:
+      - db
+    environment:
+      STAGE: test
+      SQLALCHEMY_DATABASE_URI: postgresql://postgres:alya@db/postgres
+    networks:
+      - default
+    ports:
+      - 5000:5000
+    volumes:
+      - ./app:/usr/src/app/app
+      - ./migrations:/usr/src/app/migrations
+    restart: always
+
+  db:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: alya
+      POSTGRES_DB: postgres
+      POSTGRES_MULTIPLE_EXTENSIONS: postgis,hstore,postgis_topology,postgis_raster,pgrouting
+    image: kartoza/postgis:14-3.2
+    networks:
+      - default
+    ports:
+      - 5405:5432
+    restart: always
+    volumes:
+      - postgis-data:/var/lib/postgresql

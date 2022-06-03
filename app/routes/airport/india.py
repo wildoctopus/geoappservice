@@ -1,18 +1,18 @@
 from flask import Blueprint, request
 from flask import Response
 from flask import render_template, flash, redirect, url_for
-from application.configs import Config
-from application.utilities.validation import required_params,validate_json,allowed_file_type_and_size
-from application.models.airport.india import IndianAirports
-from application.utilities.flask import APIError, APIResponse, validate
-from application.utilities.serialization import serialize
-from application.forms.addairport import AddForm
-from application.forms.mylocation import AddLocationForm
-from application.forms.upload import UploadForm
+from app.configs import Config
+from app.utilities.validation import required_params,validate_json,allowed_file_type_and_size
+from app.models.airport.india import IndianAirports
+from app.utilities.flask import APIError, APIResponse, validate
+from app.utilities.serialization import serialize
+from app.forms.addairport import AddForm
+from app.forms.mylocation import AddLocationForm
+from app.forms.upload import UploadForm
 from werkzeug.utils import secure_filename
 from http import HTTPStatus
-from application import db
-from application.configs.constants import Constant
+from app import db
+from app.configs.constants import Constant
 import os
 import csv
 import io

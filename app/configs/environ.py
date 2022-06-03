@@ -14,7 +14,7 @@ class EnvironConfig:
     
 
     #Add template related configurations
-    templet_env= Environment(loader=PackageLoader('application', 'templates'),autoescape=select_autoescape(['html', 'xml']))
+    templet_env= Environment(loader=PackageLoader('app', 'templates'),autoescape=select_autoescape(['html', 'xml']))
 
     #sample_template.html file is kept inside templates folder
     #SAMPLE_TEMPLATE = templet_env.get_template('sample_template.html')

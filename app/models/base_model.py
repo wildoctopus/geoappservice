@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from application import db
+from app import db
 
 
 class BaseModel(db.Model):

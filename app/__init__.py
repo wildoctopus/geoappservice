@@ -1,12 +1,12 @@
 from flask import g, request, url_for
-from application.utilities.flask import APIError, APIFlask
-from application.configs import Config
-from application.configs.environ import EnvironConfig
+from app.utilities.flask import APIError, APIFlask
+from app.configs import Config
+from app.configs.environ import EnvironConfig
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask import Flask
-from application.configs.constants import Constant
+from app.configs.constants import Constant
 
 
 
@@ -38,7 +38,7 @@ def create_app(test_config=None):
     with app.app_context():
 
         #imprt modules
-        from application.routes.airport import india
+        from app.routes.airport import india
 
         #register blueprints        
 
