@@ -25,7 +25,8 @@ services:
       POSTGRES_PASSWORD: alya
       POSTGRES_DB: postgres
       POSTGRES_MULTIPLE_EXTENSIONS: postgis,hstore,postgis_topology,postgis_raster,pgrouting
-    image: kartoza/postgis:14-3.2
+    #image: kartoza/postgis:14-3.2
+    image: postgis/postgis
     networks:
       - default
     ports:
