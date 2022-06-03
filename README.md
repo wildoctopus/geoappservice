@@ -42,9 +42,9 @@ Run below commands to setup project using docker:
 Once the build is completed navigate to ```localhost:5001``` in browser to test the app.
 <br>
 Other useful commands:
-* To stop the avove services : ```sudo docker-compose down```
-* Check running containers: ```sudo docker ps -a```
-* Build Docker image: ```sudo docker build -t IMAGE_NAME .```
+* To stop the avove services : ```sudo docker-compose down```<br>
+* Check running containers: ```sudo docker ps -a```<br>
+* Build Docker image: ```sudo docker build -t IMAGE_NAME .```<br>
 * Execute the created IMAGE file : ```sudo docker run -it --name IMAGE_NAME IMAGE_NAME```
 ## How to Contribute?
 In order to contribute to this project please fork this repo and choose the open issue you want to work on. Feel free to suggest enhancements and post issues if you encounter any. Thanks. 
