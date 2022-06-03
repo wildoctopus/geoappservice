@@ -21,8 +21,14 @@ RUN pip install -r requirements.txt
 # copy project
 COPY . /usr/src/app/
 
+# making the script executable
+RUN chmod +x docker-entrypoint.sh
+
 EXPOSE 5000
+#EXPOSE 5432
 
 RUN ls -la app/
 
-ENTRYPOINT ["app/docker-entrypoint.sh"]
+CMD ["./docker-entrypoint.sh"]
+#ENTRYPOINT [ "./docker-entrypoint.sh" ]
+#CMD ["gunicorn", "--workers", "8", "--log-level", "INFO", "--bind", "0.0.0.0:5000", "app:app"]

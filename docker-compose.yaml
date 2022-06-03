@@ -1,6 +1,4 @@
-version: '3.9'
-volumes:
-  postgis-data:
+version: '3.5'
 
 services:
   api:
@@ -9,11 +7,12 @@ services:
       - db
     environment:
       STAGE: test
-      SQLALCHEMY_DATABASE_URI: postgresql://postgres:alya@db/postgres
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://postgres:alya@db:5432/postgres
+      #POSTGRES_HOST: 'db:5432'
     networks:
       - default
     ports:
-      - 5000:5000
+      - 5001:5000
     volumes:
       - ./app:/usr/src/app/app
       - ./migrations:/usr/src/app/migrations
@@ -30,7 +29,7 @@ services:
     networks:
       - default
     ports:
-      - 5405:5432
+      - 5432:5432
     restart: always
     volumes:
-      - postgis-data:/var/lib/postgresql
+      - ./postgres-data:/var/lib/postgresql/data
