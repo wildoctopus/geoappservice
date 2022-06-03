@@ -41,7 +41,7 @@ Run below commands to setup project using docker:
 * To build image and run services:  ```sudo docker-compose up -d --build```<br>
 Once the build is completed navigate to ```localhost:5001``` in browser to test the app.
 <br>
-Other useful commands:
+Other useful commands:<br>
 * To stop the avove services : ```sudo docker-compose down``` <br>
 * Check running containers: ```sudo docker ps -a``` <br>
 * Build Docker image: ```sudo docker build -t IMAGE_NAME .``` <br>
