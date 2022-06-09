@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome to GeoserviceApp Demo</h1>
-    <p>Please use above navigation links to access services.</p>
+    
+    <h2>Welcome to GeoserviceApp Demo</h2>
+    <p>Please <a href="{{ url_for('auth.login') }}">Login</a> to access the services.</p>
 {% endblock %}

@@ -28,4 +28,4 @@ sdist/
 upload
 configs/db.py
 application/upload
-migrations
+

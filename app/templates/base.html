@@ -12,11 +12,30 @@
 
             GeoAppService: 
             <ul>
-                <li><a href="{{ url_for('entry_route.welcome') }}">Home</a> </li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('main.profile') }}" >Profile </a></li>
+                {% endif %}
+                
+                {% if not current_user.is_authenticated %}
+                <li><a href="{{ url_for('main.welcome') }}">Home</a> </li>
+                {% endif %}
+
                 <li><a href="{{ url_for('india_route.list_all_airports') }}">List all Airports</a> </li>
                 <li><a href="{{ url_for('india_route.get_nearest_airport') }}">Find Nearest Airport</a></li>
+
+                {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('india_route.add_airport') }}">Add to Database</a></li>
                 <li><a href="{{ url_for('india_route.upload') }}">Upload</a></li>
+                {% endif %}
+                
+                
+                {% if not current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.login') }}" >Login</a></li>
+                <li><a href="{{ url_for('auth.signup') }}" >Sign Up</a></li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.logout') }}" >Logout</a></li>
+                {% endif %}
             </ul>                
                    
         </div>

@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask import Response
 from flask import render_template, flash, redirect, url_for
+from flask_login import login_required
 from app.configs import Config
 from app.utilities.validation import required_params,validate_json,allowed_file_type_and_size
 from app.models.airport.india import IndianAirports
@@ -22,12 +23,6 @@ from flask import current_app
 
 india_bp = Blueprint("india_route", __name__, url_prefix="/india" )
 
-#Entry route '/'
-entry_bp = Blueprint("entry_route", __name__, url_prefix="" )
-
-@entry_bp.route("/")
-def welcome():
-    return render_template('index.html', title='Welcome')
 
 
 @india_bp.route("/nearestap",methods=["GET"])
@@ -61,6 +56,7 @@ def list_all_airports():
 
 
 @india_bp.route('/addairport', methods=['GET', 'POST'])
+@login_required
 def add_airport():
     form = AddForm()
     if form.validate_on_submit():
@@ -106,6 +102,7 @@ def get_loc():
 
 
 @india_bp.route('/delete/<int:id>', methods=['GET','POST'])
+@login_required
 def delete(id):
     IndianAirportsObj = IndianAirports.get_by_id(id = id)
     print("hello")
@@ -122,6 +119,7 @@ def delete(id):
 
 
 @india_bp.route('/deleteall', methods=['GET','POST'])
+@login_required
 def delete_all():
     
     try:
@@ -139,6 +137,7 @@ def delete_all():
     
 
 @india_bp.route('/upload', methods=['GET','POST'])
+@login_required
 def upload():
     form = UploadForm()
     if form.validate_on_submit():
